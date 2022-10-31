@@ -1,3 +1,6 @@
+import tests as test
+import user_interface as ui
+
 """
 
 @author: Nicusor-Lucian Barbu
@@ -46,3 +49,9 @@ I5: F12, F13
 I6: F14
 
 """
+
+
+if __name__ == '__main__':
+    test.all()
+    ui.run_menu()
+                                                                                                                                                                     
