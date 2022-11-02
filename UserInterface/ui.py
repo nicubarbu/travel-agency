@@ -1,8 +1,9 @@
-import operations as op
+import Operations.operations as op
+
 
 def print_options():
     print("\n\n"
-        """
+          """
                 ADDITION & MODIFICATION
           1. Add package
           2. Modify package
@@ -37,75 +38,75 @@ def add_package(all_packages):
     end_date = input("End date {dd-mm-yyyy}: ")
     price = input("Price: ")
     op.add_package(all_packages, destination, start_date, end_date, price)
-    
-    
+
+
 def modify_package(all_packages):
     destination = input("Destination: ")
     start_date = input("Start date {dd-mm-yyyy}: ")
     end_date = input("End date {dd-mm-yyyy}: ")
     price = input("Price: ")
     op.modify_package(all_packages, start_date, end_date, destination, price)
-    
+
 
 def delete_packages_for_destination(all_packages):
     destination = input("Destination: ")
-    op.delete_packages_for_destination(all_packages, destination)
-    
-    
+    print(op.delete_packages_for_destination(all_packages, destination))
+
+
 def delete_packages_for_shorter_duration(all_packages):
     days = int(input("Days: "))
     op.delete_packages_for_shorter_duration(all_packages, days)
-    
-    
+
+
 def delete_packages_for_price(all_packages):
     price = float(input("Price: "))
     op.delete_packages_for_price(all_packages, price)
-    
-    
+
+
 def print_packages_for_interval(all_packages):
     start_date = input("Start date {dd-mm-yyyy}: ")
     end_date = input("End date {dd-mm-yyyy}: ")
-    op.print_packages_for_interval(all_packages, start_date, end_date)
-    
-    
+    print(op.print_packages_for_interval(all_packages, start_date, end_date))
+
+
 def print_packages_for_destination_and_price(all_packages):
     destination = input("Destination: ")
     price = input("Price: ")
-    op.print_packages_for_destination_and_price(all_packages, destination, price)
-    
-    
+    print(op.print_packages_for_destination_and_price(all_packages, destination, price))
+
+
 def print_packages_for_end_date(all_packages):
     end_date = input("End date {dd-mm-yyyy}: ")
-    op.print_packages_for_end_date(all_packages, end_date)
-    
-    
+    print(op.print_packages_for_end_date(all_packages, end_date))
+
+
 def print_number_of_packages_for_destination(all_packages):
     destination = input("Destination: ")
-    op.print_number_of_packages_for_destination(all_packages, destination)
-    
-    
+    print(op.print_number_of_packages_for_destination(all_packages, destination))
+
+
 def print_packages_for_duration_and_price(all_packages):
     days = int(input("Days: "))
     price = float(input("Price: "))
-    op.print_packages_for_duration_and_price(all_packages, days, price)
-    
-    
+    print(op.print_packages_for_duration_and_price(all_packages, days, price))
+
+
 def print_medium_price_for_destination(all_packages):
     destination = input("Destination: ")
-    op.print_medium_price_for_destination(all_packages, destination)
-    
-    
+    print(op.print_medium_price_for_destination(all_packages, destination))
+
+
 def remove_package_for_destination_higher_price(all_packages):
     destination = input("Destination: ")
     price = float(input("Price: "))
     op.remove_package_for_destination_higher_price(all_packages, destination, price)
-    
-    
+
+
 def remove_package_for_other_month(all_packages):
     month = int(input("Month: "))
     op.remove_package_for_other_month(all_packages, month)
-    
-    
+
+
 def undo_last_operation(all_packages, all_packages_copy):
     op.undo_last_operation(all_packages, all_packages_copy)
 

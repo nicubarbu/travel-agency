@@ -1,10 +1,10 @@
-import setters as set
-import getters as get
+from email.policy import default
+import Domain.getters_setters as domain
 from datetime import datetime
 time_format = "%d-%m-%Y"
 
 
-def create_package (start_date, end_date, destination, price):
+def create_package(start_date, end_date, destination, price):
     """
     create a new package
     input: start_date - string
@@ -25,24 +25,38 @@ def add_package(all_packages, start_date, end_date, destination, price):
            destination - string
            price - float
     """
+    destination = input("Destination: ")
+    start_date = input("Start date {dd-mm-yyyy}: ")
+    end_date = input("End date {dd-mm-yyyy}: ")
+    price = input("Price: ")
+    
     package = create_package(start_date, end_date, destination, price)
     all_packages.append(package)
-    
-    
+    return all_packages
+
+
 def modify_package(all_packages, start_date, end_date, destination, price):
     """
-    modify a package from the list of packages
+    modify the price of a package from the list of packages
     input: all_packages - list of packages
            start_date - string
            end_date - string
            destination - string
            price - float
     """
+    destination = input("New destination: ")
+    start_date = input("New tart date {dd-mm-yyyy}: ")
+    end_date = input("New end date {dd-mm-yyyy}: ")
+    price = input("New price: ")
+    
     for i in range(len(all_packages)):
-        if get.start_date(all_packages[i]) == start_date and get.end_date(all_packages[i]) == end_date and get.destination(all_packages[i]) == destination:
-            set.price(all_packages[i], price)
-            
-            
+        if domain.get_start_date(all_packages[i]) == start_date \
+                and domain.get_end_date(all_packages[i]) == end_date \
+                and domain.get_destination(all_packages[i]) == destination:
+            domain.set_price(all_packages[i], price)
+    return all_packages
+
+
 def delete_packages_for_destination(all_packages, destination):
     """
     delete packages for a given destination
@@ -50,23 +64,33 @@ def delete_packages_for_destination(all_packages, destination):
            destination - string
     """
     for i in range(len(all_packages)-1, -1, -1):
-        if get.destination(all_packages[i]) == destination:
+        if domain.get_destination(all_packages[i]) == destination:
             del all_packages[i]
-            
-            
+
+
 def delete_packages_for_shorter_duration(all_packages, days):
     """
     delete packages that have a shorter duration than a given number of days
     input: all_packages - list of packages
            days - integer
     """
+    #TODO check if the input time format is right:
+    # for example: 0 < days < 31
+    #              0 < months < 12
+    #              0 < years
+    # also check if the input date is greater than today's date
+    # valid for every function that requires start_date, end_date
+
     # time_format = "%d-%m-%Y"
     for i in range(len(all_packages)-1, -1, -1):
-        date = datetime.strptime(get.end_date(all_packages[i]), time_format) - datetime.strptime(get.start_date(all_packages[i]), time_format)
+
+        date = datetime.strptime(domain.get_end_date(all_packages[i]), time_format) - \
+               datetime.strptime(domain.get_start_date(all_packages[i]), time_format)
         if date.days < days:
             del all_packages[i]
-            
-            
+    return all_packages
+
+
 def delete_packages_for_price(all_packages, price):
     """
     delete packages that have the price bigger than a given price
@@ -74,10 +98,11 @@ def delete_packages_for_price(all_packages, price):
            price - float
     """
     for i in range(len(all_packages)-1, -1, -1):
-        if get.price(all_packages[i]) > price:
+        if domain.get_price(all_packages[i]) > price:
             del all_packages[i]
-            
-            
+    return all_packages
+
+
 def print_packages_for_interval(all_packages, start_date, end_date):
     """
     print packages that include a stay in a given interval of time
@@ -87,12 +112,22 @@ def print_packages_for_interval(all_packages, start_date, end_date):
     """
     for i in range(len(all_packages)):
         
-        if datetime.strptime(start_date, time_format) <= datetime.strptime(get.start_date(all_packages[i]), time_format) <= datetime.strptime(end_date, time_format):
+        if datetime.strptime(start_date, time_format).day <= datetime.strptime(domain.get_start_date(all_packages[i]), time_format).day <= datetime.strptime(end_date, time_format).day and \
+            datetime.strptime(start_date, time_format).month <= datetime.strptime(domain.get_start_date(all_packages[i]), time_format).month <= datetime.strptime(end_date, time_format).month and \
+                datetime.strptime(start_date, time_format).year <= datetime.strptime(domain.get_start_date(all_packages[i]), time_format).year <= datetime.strptime(end_date, time_format).year:
             return all_packages[i]
-        if datetime.strptime(start_date, time_format) <= datetime.strptime(get.end_date(all_packages[i]), time_format) <= datetime.strptime(end_date, time_format):
+        
+
+        if datetime.strptime(start_date, time_format) <=\
+                datetime.strptime(domain.get_start_date(all_packages[i]), time_format) <=\
+                datetime.strptime(end_date, time_format):
             return all_packages[i]
-                
-                
+        if datetime.strptime(start_date, time_format) <= \
+                datetime.strptime(domain.get_end_date(all_packages[i]), time_format) <= \
+                datetime.strptime(end_date, time_format):
+            return all_packages[i]
+
+
 def print_packages_for_destination_and_price(all_packages, destination, price):
     """
     print packages that have a given destination
@@ -101,10 +136,10 @@ def print_packages_for_destination_and_price(all_packages, destination, price):
            price - float
     """
     for i in range(len(all_packages)):
-        if get.destination(all_packages[i]) == destination and get.price(all_packages[i]) < price:
+        if domain.get_destination(all_packages[i]) == destination and domain.get_price(all_packages[i]) <= price:
             return all_packages[i]
-            
-            
+
+
 def print_packages_for_end_date(all_packages, end_date):
     """
     print packages that have a given end date
@@ -112,10 +147,10 @@ def print_packages_for_end_date(all_packages, end_date):
            end_date - string
     """
     for i in range(len(all_packages)):
-        if get.end_date(all_packages[i]) == end_date:
+        if domain.get_end_date(all_packages[i]) == end_date:
             return all_packages[i]
-            
-            
+
+
 def print_number_of_packages_for_destination(all_packages, destination):
     """
     print the number of packages that have a given destination
@@ -124,10 +159,10 @@ def print_number_of_packages_for_destination(all_packages, destination):
     """
     count = 0
     for i in range(len(all_packages)):
-        if get.destination(all_packages[i]) == destination:
+        if domain.get_destination(all_packages[i]) == destination:
             count += 1
     return count
-    
+
 
 def print_packages_for_duration_and_price(all_packages, days, price):
     """
@@ -137,7 +172,9 @@ def print_packages_for_duration_and_price(all_packages, days, price):
            price - float
     """
     for i in range(len(all_packages)):
-        if (datetime.strptime(get.end_date(all_packages[i]), time_format) - datetime.strptime(get.start_date(all_packages[i]), time_format)).days == days and get.price(all_packages[i]) <= price:
+        if (datetime.strptime(domain.get_end_date(all_packages[i]), time_format) -
+            datetime.strptime(domain.get_start_date(all_packages[i]), time_format)).days == days\
+                and domain.get_price(all_packages[i]) <= price:
             print(all_packages[i])
 
 
@@ -150,12 +187,12 @@ def print_medium_price_for_destination(all_packages, destination):
     count = 0
     sum = 0
     for i in range(len(all_packages)):
-        if get.destination(all_packages[i]) == destination:
+        if domain.get_destination(all_packages[i]) == destination:
             count += 1
-            sum += get.price(all_packages[i])
+            sum += domain.get_price(all_packages[i])
     return sum/count
-    
-    
+
+
 def remove_package_for_destination_higher_price(all_packages, destination, price):
     """
     remove offers that have a higher price that have a different location
@@ -165,10 +202,10 @@ def remove_package_for_destination_higher_price(all_packages, destination, price
            price - float
     """
     for i in range(len(all_packages)-1, -1, -1):
-        if get.destination(all_packages[i]) != destination or get.price(all_packages[i]) > price:
+        if domain.get_destination(all_packages[i]) != destination or domain.get_price(all_packages[i]) > price:
             del all_packages[i]
-            
-        
+
+
 def remove_package_for_other_month(all_packages, month):
     """
     remove packages that have a different month than the input month
@@ -176,9 +213,10 @@ def remove_package_for_other_month(all_packages, month):
            month - integer
     """
     for i in range(len(all_packages)-1, -1, -1):
-        if datetime.strptime(get.start_date(all_packages[i]), time_format).month != month:
+        if datetime.strptime(domain.get_start_date(all_packages[i]), time_format).month != month:
+        # if domain.get_start_date(all_packages[i]).month:
             del all_packages[i]
-            
+
 
 def undo_last_operation(all_packages, all_packages_copy):
     """
@@ -189,7 +227,7 @@ def undo_last_operation(all_packages, all_packages_copy):
     all_packages.clear()
     for i in range(len(all_packages_copy)):
         all_packages.append(all_packages_copy[i])
-        
+
 
 
 # def copy_deepCopy(all_packages):
@@ -214,8 +252,8 @@ def undo_last_operation(all_packages, all_packages_copy):
 #         nx = x[:]
 #         new_list.append(nx)
 #     return new_list
-    
-    
+
+
 # def delete_elements(main_list, user_input, undolist):
 #     # function that deletes elements from the list if a condition isn't met
 #     undolist.append(bootleg_deepcopy(main_list))

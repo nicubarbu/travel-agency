@@ -33,6 +33,7 @@ def get_price(package):
     """
     return package["price"]
 
+
 def set_start_date(package, start_date):
     """
     set the start date of a package

@@ -1,13 +1,13 @@
 # from typing_extensions import assert_type
-import getters as get
-import operations as op
+import Domain.getters_setters as domain
+import Operations.operations as op
 """
 --- tests ---
 assert len(all_packages) == 
-assert (get.destination(all_packages[0]) == "")
-assert (get.start_date(all_packages[0]) == "")
-assert (get.end_date(all_packages[0]) == "")
-assert (get.price(all_packages[0]) == )
+assert (domain.get_destination(all_packages[0]) == "")
+assert (domain.get_start_date(all_packages[0]) == "")
+assert (domain.get_end_date(all_packages[0]) == "")
+assert (domain.get_price(all_packages[0]) == )
 """
 
 
@@ -19,10 +19,10 @@ def add_package():
     all_packages = []
     op.add_package(all_packages, "01-05-2022", "10-05-2022", "Paris", 1000)
     assert len(all_packages) == 1
-    assert (get.destination(all_packages[0]) == "Paris")
-    assert (get.start_date(all_packages[0]) == "01-05-2022")
-    assert (get.end_date(all_packages[0]) == "10-05-2022")
-    assert (get.price(all_packages[0]) == 1000)
+    assert (domain.get_destination(all_packages[0]) == "Paris")
+    assert (domain.get_start_date(all_packages[0]) == "01-05-2022")
+    assert (domain.get_end_date(all_packages[0]) == "10-05-2022")
+    assert (domain.get_price(all_packages[0]) == 1000)
     
 
 def modify_package():
@@ -30,10 +30,10 @@ def modify_package():
     op.add_package(all_packages, "01-07-2022", "06-07-2022", "Tokyo", 1000)
     op.modify_package(all_packages, "01-07-2022", "06-07-2022", "Tokyo", 2500)
     assert len(all_packages) == 1
-    assert (get.destination(all_packages[0]) == "Tokyo")
-    assert (get.start_date(all_packages[0]) == "01-07-2022")
-    assert (get.end_date(all_packages[0]) == "06-07-2022")
-    assert (get.price(all_packages[0]) == 2500)
+    assert (domain.get_destination(all_packages[0]) == "Tokyo")
+    assert (domain.get_start_date(all_packages[0]) == "01-07-2022")
+    assert (domain.get_end_date(all_packages[0]) == "06-07-2022")
+    assert (domain.get_price(all_packages[0]) == 2500)
     
     
 def delete_packages_for_destination():
@@ -69,10 +69,10 @@ def print_packages_for_interval():
     op.add_package(all_packages, "02-07-2022", "06-07-2022", "Costinesti", 100)
     op.add_package(all_packages, "01-08-2022", "02-08-2022", "Tokyo", 1500)
     assert op.print_packages_for_interval(all_packages, "01-05-2022", "10-05-2022")
-    assert (get.destination(all_packages[0]) == "Paris")
-    assert (get.start_date(all_packages[0]) == "01-05-2022")
-    assert (get.end_date(all_packages[0]) == "10-05-2022")
-    assert (get.price(all_packages[0]) == 800)
+    assert (domain.get_destination(all_packages[0]) == "Paris")
+    assert (domain.get_start_date(all_packages[0]) == "01-05-2022")
+    assert (domain.get_end_date(all_packages[0]) == "10-05-2022")
+    assert (domain.get_price(all_packages[0]) == 800)
     
     
 def print_packages_for_destination_and_price():
@@ -105,10 +105,10 @@ def print_packages_for_duration_and_price():
     op.add_package(all_packages, "07-01-2022", "10-01-2022", "Bologna", 250)
     op.add_package(all_packages, "01-01-2022", "02-01-2022", "Paris", 1500)
     # assert op.print_packages_for_duration_and_price(all_packages, 4, 600) == ["Bucharest\n"]
-    assert (get.destination(all_packages[0]) == "Bucharest")
-    assert (get.start_date(all_packages[0]) == "10-02-2022")
-    assert (get.end_date(all_packages[0]) == "14-02-2022")
-    assert (get.price(all_packages[0]) == 500)
+    assert (domain.get_destination(all_packages[0]) == "Bucharest")
+    assert (domain.get_start_date(all_packages[0]) == "10-02-2022")
+    assert (domain.get_end_date(all_packages[0]) == "14-02-2022")
+    assert (domain.get_price(all_packages[0]) == 500)
     
     
 def print_medium_price_for_destination():
@@ -133,10 +133,10 @@ def remove_package_for_other_month():
     op.add_package(all_packages, "10-10-2022", "14-10-2022", "Bucharest", 500)
     op.add_package(all_packages, "01-01-2022", "02-01-2022", "Paris", 1500)
     op.remove_package_for_other_month(all_packages, "10")
-    # assert (get.destination(all_packages[0]) == "Paris")
-    # assert (get.start_date(all_packages[0]) == "01-01-2022")
-    # assert (get.end_date(all_packages[0]) == "02-01-2022")
-    # assert (get.price(all_packages[0]) == 1500)
+    # assert (domain.get_destination(all_packages[0]) == "Paris")
+    # assert (domain.get_start_date(all_packages[0]) == "01-01-2022")
+    # assert (domain.get_end_date(all_packages[0]) == "02-01-2022")
+    # assert (domain.get_price(all_packages[0]) == 1500)
     
     
 # def undo_last_operation():
