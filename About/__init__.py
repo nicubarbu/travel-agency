@@ -1,6 +1,0 @@
-"""
-
-@author: Nicusor-Lucian Barbu
-
- 
-"""

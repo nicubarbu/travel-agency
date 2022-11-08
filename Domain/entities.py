@@ -31,7 +31,7 @@ def get_price(package):
     input: package - dictionary
     return: price - float
     """
-    return package["price"]
+    return int(package["price"])
 
 
 def set_start_date(package, start_date):
