@@ -34,7 +34,7 @@ F9: Print number of offers for a specific destination
 F10: Print available travel packages in a certain period sorted by price
 F11: Print medium price for a specific destination
 F12: Remove offers that have a higher price than the input price
-     and a different destination than the input destination
+     or a different destination than the input destination
 F13: Remove offers where the stay requires rent days in a specific month
      (input by the user in console between 1 and 12)
 F14: Undo the last operation (Package list rewinds to the previous state)

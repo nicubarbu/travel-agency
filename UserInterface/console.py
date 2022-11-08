@@ -1,4 +1,6 @@
 import Domain.operations as op
+from datetime import datetime
+time_format = "%d-%m-%Y"
 
 
 def print_options():
@@ -15,14 +17,14 @@ def print_options():
                         PRINTING
           6. Print all packages
           7. Print all packages for a specific interval of dates
-          8. Print all packages for a specific destination
+          8. Print all packages for a specific destination and price
           9. Print all packages for a specific end date
           10. Print the number of packages for a specific destination
           11. Print all packages for a specific duration and price
           12. Print the medium price for a specific destination
           
                         REMOVAL
-          13. Remove the packages that have a specific destination, but a bigger price
+          13. Remove the packages that have different destination or bigger price than input
           14. Remove the packages that are available in a different month
           
                         UNDO
@@ -33,18 +35,43 @@ def print_options():
 
 
 def add_package(all_packages):
-    destination = input("Destination: ")
     start_date = input("Start date {dd-mm-yyyy}: ")
+    while (type(start_date) is not str) or (len(start_date) != 10):
+        print("Invalid start date!")
+        while (type(datetime.strptime(start_date, time_format)) is not datetime):
+            print("Invalid start date!")
+            start_date = input("Start date {dd-mm-yyyy}: ")
+            
     end_date = input("End date {dd-mm-yyyy}: ")
-    price = input("Price: ")
-    op.add_package(all_packages, destination, start_date, end_date, price)
+    while (type(end_date) is not str) or (len(end_date) != 10):
+        print("Invalid end date!")
+        while (type(datetime.strptime(end_date, time_format)) is not datetime):
+            print("Invalid end date!")
+            start_date = input("End date {dd-mm-yyyy}: ")
+            
+    destination = input("Destination: ")
+    while type(destination) is not str:
+        print("Invalid destination!")
+        destination = input("Destination: ")
+            
+    try:
+        price = float(input("Price: "))
+    except TypeError as te:
+        print("You entered an invalid value. You should enter a floating number. ", te)
+        price = float(input("Price: "))
+    
+    op.add_package(all_packages, start_date, end_date, destination, price)
 
 
 def modify_package(all_packages):
+    print("These are the available packages:\n")
+    print_all_packages(all_packages)
+    print("Enter each data of the package you want to modify.\n")
     destination = input("Destination: ")
     start_date = input("Start date {dd-mm-yyyy}: ")
     end_date = input("End date {dd-mm-yyyy}: ")
     price = input("Price: ")
+    print("Now, enter the new price of the package.\n")
     op.modify_package(all_packages, start_date, end_date, destination, price)
 
 
@@ -65,7 +92,11 @@ def delete_packages_for_price(all_packages):
 
 def print_all_packages(all_packages):
     for i in range(len(all_packages)):
-            print(all_packages[i]) 
+            print(all_packages[i])
+#TODO: when prints all packages,
+#start_date  --> shows as Destionation
+#end_date    --> shows as start_date
+#destination --> shows as end_date
 
 
 def print_packages_for_interval(all_packages):
