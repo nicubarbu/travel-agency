@@ -25,10 +25,6 @@ def add_package(all_packages, start_date, end_date, destination, price):
            destination - string
            price - float
     """
-    destination = input("Destination: ")
-    start_date = input("Start date {dd-mm-yyyy}: ")
-    end_date = input("End date {dd-mm-yyyy}: ")
-    price = input("Price: ")
     
     package = create_package(start_date, end_date, destination, price)
     all_packages.append(package)
@@ -44,10 +40,6 @@ def modify_package(all_packages, start_date, end_date, destination, price):
            destination - string
            price - float
     """
-    destination = input("New destination: ")
-    start_date = input("New tart date {dd-mm-yyyy}: ")
-    end_date = input("New end date {dd-mm-yyyy}: ")
-    price = input("New price: ")
     
     for i in range(len(all_packages)):
         if domain.get_start_date(all_packages[i]) == start_date \
