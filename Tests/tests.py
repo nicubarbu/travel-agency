@@ -63,6 +63,12 @@ def delete_packages_for_price():
     assert len(all_packages) == 1
     
     
+def print_all_packages():
+    all_packages = []
+    op.add_package(all_packages, "01-05-2022", "10-05-2022", "Paris", 800)
+    assert op.print_all_packages(all_packages)
+    
+    
 def print_packages_for_interval():
     all_packages = []
     op.add_package(all_packages, "01-05-2022", "10-05-2022", "Paris", 800)

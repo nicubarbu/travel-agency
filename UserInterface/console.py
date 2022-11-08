@@ -13,19 +13,21 @@ def print_options():
           5. Delete all packages for a bigger price
           
                         PRINTING
-          6. Print all packages for a specific interval of dates
-          7. Print all packages for a specific destination
-          8. Print all packages for a specific end date
-          9. Print the number of packages for a specific destination
-          10. Print all packages for a specific duration and price
-          11. Print the medium price for a specific destination
+          6. Print all packages
+          7. Print all packages for a specific interval of dates
+          8. Print all packages for a specific destination
+          9. Print all packages for a specific end date
+          10. Print the number of packages for a specific destination
+          11. Print all packages for a specific duration and price
+          12. Print the medium price for a specific destination
           
                         REMOVAL
-          12. Remove the packages that have a specific destination, but a bigger price
-          13. Remove the packages that are available in a different month
+          13. Remove the packages that have a specific destination, but a bigger price
+          14. Remove the packages that are available in a different month
           
                         UNDO
-          14. Undo the last operation
+          15. Undo the last operation
+          
           x. Exit
           """)
 
@@ -59,6 +61,11 @@ def delete_packages_for_shorter_duration(all_packages):
 def delete_packages_for_price(all_packages):
     price = float(input("Price: "))
     op.delete_packages_for_price(all_packages, price)
+
+
+def print_all_packages(all_packages):
+    for i in range(len(all_packages)):
+            print(all_packages[i]) 
 
 
 def print_packages_for_interval(all_packages):
@@ -115,16 +122,17 @@ def run_menu():
                3: delete_packages_for_destination,
                4: delete_packages_for_shorter_duration,
                5: delete_packages_for_price,
-               6: print_packages_for_interval,
-               7: print_packages_for_destination_and_price,
-               8: print_packages_for_end_date,
-               9: print_number_of_packages_for_destination,
-               10: print_packages_for_duration_and_price,
-               11: print_medium_price_for_destination,
-               12: remove_package_for_destination_higher_price,
-               13: remove_package_for_other_month,
-               14: undo_last_operation,
-               15: exit
+               6: print_all_packages,
+               7: print_packages_for_interval,
+               8: print_packages_for_destination_and_price,
+               9: print_packages_for_end_date,
+               10: print_number_of_packages_for_destination,
+               11: print_packages_for_duration_and_price,
+               12: print_medium_price_for_destination,
+               13: remove_package_for_destination_higher_price,
+               14: remove_package_for_other_month,
+               15: undo_last_operation,
+               16: exit
                }
     all_packages = []
     while True:
