@@ -1,6 +1,6 @@
 # from typing_extensions import assert_type
-import Domain.getters_setters as domain
-import Operations.operations as op
+import Domain.entities as domain
+import Domain.operations as op
 """
 --- tests ---
 assert len(all_packages) == 

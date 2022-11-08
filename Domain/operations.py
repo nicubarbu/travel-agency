@@ -1,5 +1,5 @@
 from email.policy import default
-import Domain.getters_setters as domain
+import Domain.entities as domain
 from datetime import datetime
 time_format = "%d-%m-%Y"
 

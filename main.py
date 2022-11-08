@@ -1,5 +1,5 @@
 import Tests.tests as test
-import UserInterface.ui as ui
+import UserInterface.console as console
 
 """
 
@@ -53,5 +53,5 @@ I6: F14
 
 if __name__ == '__main__':
     test.all()
-    ui.run_menu()
+    console.run_menu()
                                                                                                                                                                      

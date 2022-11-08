@@ -1,9 +1,8 @@
-import Operations.operations as op
+import Domain.operations as op
 
 
 def print_options():
-    print("\n\n"
-          """
+    print("""
                 ADDITION & MODIFICATION
           1. Add package
           2. Modify package
@@ -28,8 +27,7 @@ def print_options():
                         UNDO
           14. Undo the last operation
           x. Exit
-          """
-          "\n\n")
+          """)
 
 
 def add_package(all_packages):
