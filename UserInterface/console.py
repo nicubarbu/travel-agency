@@ -66,7 +66,10 @@ def add_package(all_packages):
 def modify_package(all_packages):
     print("These are the available packages:\n")
     print_all_packages(all_packages)
-    print("Enter each data of the package you want to modify.\n")
+    print("Enter the ID of the package you want to modify.\n")
+    
+    
+    
     destination = input("Destination: ")
     start_date = input("Start date {dd-mm-yyyy}: ")
     end_date = input("End date {dd-mm-yyyy}: ")
@@ -92,7 +95,7 @@ def delete_packages_for_price(all_packages):
 
 def print_all_packages(all_packages):
     for i in range(len(all_packages)):
-            print(all_packages[i])
+            print(f"{i}.", all_packages[i])
 #TODO: when prints all packages,
 #start_date  --> shows as Destionation
 #end_date    --> shows as start_date
