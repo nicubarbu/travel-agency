@@ -95,6 +95,16 @@ def delete_packages_for_price(all_packages, price):
     return all_packages
 
 
+def print_all_packages(all_packages):
+    for i in range(len(all_packages)):
+        # print(f"{i}.", all_packages[i])
+        print(all_packages[i])
+#TODO: when prints all packages,
+#start_date  --> shows as Destionation
+#end_date    --> shows as start_date
+#destination --> shows as end_date
+
+
 def print_packages_for_interval(all_packages, start_date, end_date):
     """
     print packages that include a stay in a given interval of time

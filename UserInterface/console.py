@@ -102,16 +102,6 @@ def delete_packages_for_price(all_packages):
     op.delete_packages_for_price(all_packages, price)
 
 
-def print_all_packages(all_packages):
-    for i in range(len(all_packages)):
-        # print(f"{i}.", all_packages[i])
-        print(all_packages[i])
-#TODO: when prints all packages,
-#start_date  --> shows as Destionation
-#end_date    --> shows as start_date
-#destination --> shows as end_date
-
-
 def print_packages_for_interval(all_packages):
     start_date = input("Start date {dd-mm-yyyy}: ")
     end_date = input("End date {dd-mm-yyyy}: ")
@@ -161,14 +151,13 @@ def undo_last_operation(all_packages, all_packages_copy):
 
 
 def run_menu():
-    # setup.clear()
     options = {
                1: add_package,
                2: modify_package,
                3: delete_packages_for_destination,
                4: delete_packages_for_shorter_duration,
                5: delete_packages_for_price,
-               6: print_all_packages,
+               6: op.print_all_packages,
                7: print_packages_for_interval,
                8: print_packages_for_destination_and_price,
                9: print_packages_for_end_date,
