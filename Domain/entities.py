@@ -34,6 +34,15 @@ def get_price(package):
     return int(package["price"])
 
 
+def get_id(package):
+    '''
+    get the id of a package
+    input: package - dictionary
+    return: id - integer
+    '''
+    return package["id"]
+
+
 def set_start_date(package, start_date):
     """
     set the start date of a package
@@ -68,6 +77,15 @@ def set_price(package, price):
            price - float
     """
     package["price"] = price
+    
+    
+def set_id(package, id):
+    '''
+    set the id of a package
+    input: package - dictionary
+           id - integer
+    '''
+    package["id"] = id
 
 
 def set_month(month):
