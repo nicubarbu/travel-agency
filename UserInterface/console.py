@@ -1,5 +1,5 @@
-import Domain.operations as op
 from datetime import datetime
+import Domain.operations as op
 time_format = "%d-%m-%Y"
 
 
@@ -35,17 +35,19 @@ def print_options():
 
 
 def add_package(all_packages):
+    package_id = len(all_packages) + 1
+    
     start_date = input("Start date {dd-mm-yyyy}: ")
     while (type(start_date) is not str) or (len(start_date) != 10):
         print("Invalid start date!")
-        while (type(datetime.strptime(start_date, time_format)) is not datetime):
+        while type(datetime.strptime(start_date, time_format)) is not datetime:
             print("Invalid start date!")
             start_date = input("Start date {dd-mm-yyyy}: ")
             
     end_date = input("End date {dd-mm-yyyy}: ")
     while (type(end_date) is not str) or (len(end_date) != 10):
         print("Invalid end date!")
-        while (type(datetime.strptime(end_date, time_format)) is not datetime):
+        while type(datetime.strptime(end_date, time_format)) is not datetime:
             print("Invalid end date!")
             start_date = input("End date {dd-mm-yyyy}: ")
             
@@ -60,22 +62,29 @@ def add_package(all_packages):
         print("You entered an invalid value. You should enter a floating number. ", te)
         price = float(input("Price: "))
     
-    op.add_package(all_packages, start_date, end_date, destination, price)
+    op.add_package(all_packages, package_id, start_date, end_date, destination, price)
 
 
 def modify_package(all_packages):
+    if len(all_packages) == 0:
+        print("There are no packages to modify.")
+        return run_menu()
+    
     print("These are the available packages:\n")
     print_all_packages(all_packages)
-    print("Enter the ID of the package you want to modify.\n")
+    print("Enter the ID of the package you want to modify.")
+    user_id = int(input("ID: "))
+    while user_id > len(all_packages) or user_id < 1:
+        print("Invalid ID!")
+        user_id = int(input("ID: "))
     
-    
-    
-    destination = input("Destination: ")
-    start_date = input("Start date {dd-mm-yyyy}: ")
-    end_date = input("End date {dd-mm-yyyy}: ")
-    price = input("Price: ")
-    print("Now, enter the new price of the package.\n")
-    op.modify_package(all_packages, start_date, end_date, destination, price)
+    if user_id <= len(all_packages) and user_id > 0:
+        print("Enter the new information for the package.")
+        start_date = input("Start date {dd-mm-yyyy}: ")
+        end_date = input("End date {dd-mm-yyyy}: ")
+        destination = input("Destination: ")
+        price = float(input("Price: "))
+        op.modify_package(all_packages, user_id, start_date, end_date, destination, price)
 
 
 def delete_packages_for_destination(all_packages):
@@ -95,7 +104,8 @@ def delete_packages_for_price(all_packages):
 
 def print_all_packages(all_packages):
     for i in range(len(all_packages)):
-            print(f"{i}.", all_packages[i])
+        # print(f"{i}.", all_packages[i])
+        print(all_packages[i])
 #TODO: when prints all packages,
 #start_date  --> shows as Destionation
 #end_date    --> shows as start_date
@@ -151,7 +161,9 @@ def undo_last_operation(all_packages, all_packages_copy):
 
 
 def run_menu():
-    options = {1: add_package,
+    # setup.clear()
+    options = {
+               1: add_package,
                2: modify_package,
                3: delete_packages_for_destination,
                4: delete_packages_for_shorter_duration,
@@ -167,7 +179,7 @@ def run_menu():
                14: remove_package_for_other_month,
                15: undo_last_operation,
                16: exit
-               }
+    }
     all_packages = []
     while True:
         print_options()

@@ -1,10 +1,9 @@
-from email.policy import default
 import Domain.entities as domain
 from datetime import datetime
 time_format = "%d-%m-%Y"
 
 
-def create_package(start_date, end_date, destination, price):
+def create_package(package_id, start_date, end_date, destination, price):
     """
     create a new package
     input: start_date - string
@@ -13,10 +12,10 @@ def create_package(start_date, end_date, destination, price):
            price - float
     return: package - dictionary
     """
-    return {"start_date": start_date, "end_date": end_date, "destination": destination, "price": price}
+    return{"id": package_id, "start_date": start_date, "end_date": end_date, "destination": destination, "price": price}
 
 
-def add_package(all_packages, start_date, end_date, destination, price):
+def add_package(all_packages, package_id, start_date, end_date, destination, price):
     """
     add a new package to the list of packages
     input: all_packages - list of packages
@@ -25,27 +24,28 @@ def add_package(all_packages, start_date, end_date, destination, price):
            destination - string
            price - float
     """
-    
-    package = create_package(start_date, end_date, destination, price)
+    # package_id = len(all_packages) + 1
+    package = create_package(package_id, start_date, end_date, destination, price)
     all_packages.append(package)
     return all_packages
 
 
-def modify_package(all_packages, start_date, end_date, destination, price):
+def modify_package(all_packages, new_package_id, new_start_date, new_end_date, new_destination, new_price):
     """
-    modify the price of a package from the list of packages
+    modify a package
     input: all_packages - list of packages
-           start_date - string
-           end_date - string
-           destination - string
-           price - float
+           new_package_id - integer
+           new_start_date - string
+           new_end_date - string
+           new_destination - string
+           new_price - float
     """
-    
-    for i in range(len(all_packages)):
-        if domain.get_start_date(all_packages[i]) == start_date \
-                and domain.get_end_date(all_packages[i]) == end_date \
-                and domain.get_destination(all_packages[i]) == destination:
-            domain.set_price(all_packages[i], price)
+    for package in all_packages:
+        if domain.get_id(package) == new_package_id:
+            domain.set_start_date(package, new_start_date)
+            domain.set_end_date(package, new_end_date)
+            domain.set_destination(package, new_destination)
+            domain.set_price(package, new_price)
     return all_packages
 
 
@@ -108,7 +108,6 @@ def print_packages_for_interval(all_packages, start_date, end_date):
             datetime.strptime(start_date, time_format).month <= datetime.strptime(domain.get_start_date(all_packages[i]), time_format).month <= datetime.strptime(end_date, time_format).month and \
                 datetime.strptime(start_date, time_format).year <= datetime.strptime(domain.get_start_date(all_packages[i]), time_format).year <= datetime.strptime(end_date, time_format).year:
             return all_packages[i]
-        
 
         if datetime.strptime(start_date, time_format) <=\
                 datetime.strptime(domain.get_start_date(all_packages[i]), time_format) <=\

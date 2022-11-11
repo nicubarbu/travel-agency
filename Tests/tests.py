@@ -12,13 +12,14 @@ assert (domain.get_price(all_packages[0]) == )
 
 
 def create_package():
-    assert op.create_package("01-05-2022", "10-05-2022", "Paris", 1000) == ["01-05-2022", "10-05-2022", "Paris", 1000]
+    assert op.create_package(1, "01-05-2022", "10-05-2022", "Paris", 1000) == [1, "01-05-2022", "10-05-2022", "Paris", 1000]
 
 
 def add_package():
     all_packages = []
-    op.add_package(all_packages, "01-05-2022", "10-05-2022", "Paris", 1000)
+    op.add_package(all_packages, 1, "01-05-2022", "10-05-2022", "Paris", 1000)
     assert len(all_packages) == 1
+    assert (domain.get_id(all_packages[0]) == 1)
     assert (domain.get_destination(all_packages[0]) == "Paris")
     assert (domain.get_start_date(all_packages[0]) == "01-05-2022")
     assert (domain.get_end_date(all_packages[0]) == "10-05-2022")
@@ -27,13 +28,20 @@ def add_package():
 
 def modify_package():
     all_packages = []
-    op.add_package(all_packages, "01-07-2022", "06-07-2022", "Tokyo", 1000)
-    op.modify_package(all_packages, "01-07-2022", "06-07-2022", "Tokyo", 2500)
-    assert len(all_packages) == 1
+    op.add_package(all_packages, 1, "01-07-2022", "06-07-2022", "Tokyo", 1000)
+    op.add_package(all_packages, 2, "01-05-2022", "10-05-2022", "Paris", 800)
+    op.modify_package(all_packages, 1, "02-07-2022", "06-07-2022", "Tokyo", 2500)
+    assert len(all_packages) == 2
+    assert (domain.get_id(all_packages[0]) == 1)
     assert (domain.get_destination(all_packages[0]) == "Tokyo")
-    assert (domain.get_start_date(all_packages[0]) == "01-07-2022")
+    assert (domain.get_start_date(all_packages[0]) == "02-07-2022")
     assert (domain.get_end_date(all_packages[0]) == "06-07-2022")
     assert (domain.get_price(all_packages[0]) == 2500)
+    assert (domain.get_id(all_packages[1]) == 2)
+    assert (domain.get_destination(all_packages[1]) == "Paris")
+    assert (domain.get_start_date(all_packages[1]) == "01-05-2022")
+    assert (domain.get_end_date(all_packages[1]) == "10-05-2022")
+    assert (domain.get_price(all_packages[1]) == 800)
     
     
 def delete_packages_for_destination():
