@@ -36,3 +36,21 @@ I3: F6, F7, F8.
 I4: F9, F10, F11.
 I5: F12, F13.
 I6: F14.
+
+F1 works
+F2 works
+
+F3 works
+F4 works
+F5 works
+
+F6 works
+F7 works
+F8 partially works (only shows the closest package to the entered price if exists)
+F9 partially works (only shows the closest package to the entered end date if exists)
+F10 works
+F11 nearly works (prints the package, but also "None")
+F12 works
+F13 works
+F14 works
+F15 not implemented
