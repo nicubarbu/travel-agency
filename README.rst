@@ -1,4 +1,3 @@
-"""
 @author: Nicusor-Lucian Barbu
 
 TRAVEL AGENCY
@@ -15,8 +14,7 @@ F2: Modify a travel package
 F3: Delete travel packages for a given destination
 F4: Delete travel packages that have a shorter duration than a given number of days
 F5: Delete travel packages that have the price bigger than a given price
-F6: Print travel packages that include a stay in a given interval of time (e.g. 10/08/2018 - 24/08/2018)
-    valid packages:
+F6: Print travel packages that include a stay in a given interval of time (e.g. 10/08/2018 - 24/08/2018). Valid packages:
     - start date is equal or greater than the input date and
         less or equal than the end date
     - end date is equal or less that the input date and
@@ -32,9 +30,9 @@ F14: Undo the last operation (Package list rewinds to the previous state)
      - do not use deepCopy
 -----------------------------------------------------------------------
 
-I1: F1, F2
-I2: F3, F4, F5
-I3: F6, F7, F8
-I4: F9, F10, F11
-I5: F12, F13
-I6: F14
+I1: F1, F2.
+I2: F3, F4, F5.
+I3: F6, F7, F8.
+I4: F9, F10, F11.
+I5: F12, F13.
+I6: F14.
