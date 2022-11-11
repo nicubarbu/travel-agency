@@ -1,5 +1,6 @@
 from datetime import datetime
 import Domain.operations as op
+import Domain.entities as domain
 time_format = "%d-%m-%Y"
 
 
@@ -35,7 +36,16 @@ def print_options():
 
 
 def add_package(all_packages):
-    package_id = len(all_packages) + 1
+    package_id = -1
+    for i in range(0, len(all_packages)):
+        # if i in all_packages[i].values():
+        if i+1 == domain.get_id(all_packages[i]):
+            continue
+        else:
+            package_id = i+1
+            
+    if package_id == -1:
+        package_id = len(all_packages) + 1
     
     start_date = input("Start date {dd-mm-yyyy}: ")
     while (type(start_date) is not str) or (len(start_date) != 10):
@@ -71,14 +81,14 @@ def modify_package(all_packages):
         return run_menu()
     
     print("These are the available packages:\n")
-    print_all_packages(all_packages)
+    op.print_all_packages(all_packages)
     print("Enter the ID of the package you want to modify.")
     user_id = int(input("ID: "))
     while user_id > len(all_packages) or user_id < 1:
         print("Invalid ID!")
         user_id = int(input("ID: "))
     
-    if user_id <= len(all_packages) and user_id > 0:
+    if len(all_packages) >= user_id > 0:
         print("Enter the new information for the package.")
         start_date = input("Start date {dd-mm-yyyy}: ")
         end_date = input("End date {dd-mm-yyyy}: ")
