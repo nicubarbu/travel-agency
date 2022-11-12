@@ -81,7 +81,7 @@ def modify_package(all_packages):
         return run_menu()
     
     print("These are the available packages:\n")
-    op.print_all_packages(all_packages)
+    print_all_packages(all_packages)
     print("Enter the ID of the package you want to modify.")
     user_id = int(input("ID: "))
     while user_id > len(all_packages) or user_id < 1:
@@ -98,24 +98,50 @@ def modify_package(all_packages):
 
 
 def delete_packages_for_destination(all_packages):
+    if len(all_packages) == 0:
+        print("There are no packages to modify.")
+        return run_menu()
+    
+    print("These are the available packages:\n")
+    print_all_packages(all_packages)
+    
     destination = input("Destination: ")
     print(op.delete_packages_for_destination(all_packages, destination))
 
 
 def delete_packages_for_shorter_duration(all_packages):
+    if len(all_packages) == 0:
+        print("There are no packages to modify.")
+        return run_menu()
+    
+    print("These are the available packages:\n")
+    print_all_packages(all_packages)
+    
     days = int(input("Days: "))
     op.delete_packages_for_shorter_duration(all_packages, days)
 
 
 def delete_packages_for_price(all_packages):
+    if len(all_packages) == 0:
+        print("There are no packages to modify.")
+        return run_menu()
+    
+    print("These are the available packages:\n")
+    print_all_packages(all_packages)
+    
     price = float(input("Price: "))
     op.delete_packages_for_price(all_packages, price)
 
 
+def print_all_packages(all_packages):
+    for i in range(len(all_packages)):
+        print(all_packages[i])
+
 def print_packages_for_interval(all_packages):
     start_date = input("Start date {dd-mm-yyyy}: ")
     end_date = input("End date {dd-mm-yyyy}: ")
-    print(op.print_packages_for_interval(all_packages, start_date, end_date))
+    for i in range(len(all_packages)):
+        print(op.print_packages_for_interval(all_packages[i], start_date, end_date))
 
 
 def print_packages_for_destination_and_price(all_packages):
@@ -167,7 +193,7 @@ def run_menu():
                3: delete_packages_for_destination,
                4: delete_packages_for_shorter_duration,
                5: delete_packages_for_price,
-               6: op.print_all_packages,
+               6: print_all_packages,
                7: print_packages_for_interval,
                8: print_packages_for_destination_and_price,
                9: print_packages_for_end_date,

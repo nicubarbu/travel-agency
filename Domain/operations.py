@@ -24,7 +24,6 @@ def add_package(all_packages, package_id, start_date, end_date, destination, pri
            destination - string
            price - float
     """
-    # package_id = len(all_packages) + 1
     package = create_package(package_id, start_date, end_date, destination, price)
     all_packages.append(package)
     return all_packages
@@ -95,16 +94,6 @@ def delete_packages_for_price(all_packages, price):
     return all_packages
 
 
-def print_all_packages(all_packages):
-    for i in range(len(all_packages)):
-        # print(f"{i}.", all_packages[i])
-        print(all_packages[i])
-#TODO: when prints all packages,
-#start_date  --> shows as Destionation
-#end_date    --> shows as start_date
-#destination --> shows as end_date
-
-
 def print_packages_for_interval(all_packages, start_date, end_date):
     """
     print packages that include a stay in a given interval of time
@@ -114,18 +103,19 @@ def print_packages_for_interval(all_packages, start_date, end_date):
     """
     for i in range(len(all_packages)):
         
-        if datetime.strptime(start_date, time_format).day <= datetime.strptime(domain.get_start_date(all_packages[i]), time_format).day <= datetime.strptime(end_date, time_format).day and \
-            datetime.strptime(start_date, time_format).month <= datetime.strptime(domain.get_start_date(all_packages[i]), time_format).month <= datetime.strptime(end_date, time_format).month and \
-                datetime.strptime(start_date, time_format).year <= datetime.strptime(domain.get_start_date(all_packages[i]), time_format).year <= datetime.strptime(end_date, time_format).year:
+        if int(datetime.strptime(start_date, time_format).day) <= int(datetime.strptime(domain.get_start_date(all_packages[i]), time_format).day) <= int(datetime.strptime(end_date, time_format).day) and \
+                int(datetime.strptime(start_date, time_format).month) <= int(datetime.strptime(domain.get_start_date(all_packages[i]), time_format).month) <= int(datetime.strptime(end_date, time_format).month) and \
+                int(datetime.strptime(start_date, time_format).year) <= int(datetime.strptime(domain.get_start_date(all_packages[i]), time_format).year) <= int(datetime.strptime(end_date, time_format).year):
             return all_packages[i]
 
-        if datetime.strptime(start_date, time_format) <=\
-                datetime.strptime(domain.get_start_date(all_packages[i]), time_format) <=\
-                datetime.strptime(end_date, time_format):
+        if int(datetime.strptime(start_date, time_format)) <=\
+                int(datetime.strptime(domain.get_start_date(all_packages[i]), time_format)) <=\
+                int(datetime.strptime(end_date, time_format)):
             return all_packages[i]
-        if datetime.strptime(start_date, time_format) <= \
-                datetime.strptime(domain.get_end_date(all_packages[i]), time_format) <= \
-                datetime.strptime(end_date, time_format):
+        
+        if int(datetime.strptime(start_date, time_format)) <= \
+                int(datetime.strptime(domain.get_end_date(all_packages[i]), time_format)) <= \
+                int(datetime.strptime(end_date, time_format)):
             return all_packages[i]
 
 
