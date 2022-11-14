@@ -1,5 +1,7 @@
 import Domain.entities as domain
 import Domain.operations as op
+from datetime import datetime
+time_format = "%d/%m/%Y"
 
 
 def create_package():
@@ -67,7 +69,7 @@ def print_packages_for_interval():
     op.add_package(all_packages, 1, "01/05/2022", "10/05/2022", "Paris", 800)
     op.add_package(all_packages, 2, "02/07/2022", "06/07/2022", "Costinesti", 100)
     op.add_package(all_packages, 3, "01/08/2022", "02/08/2022", "Tokyo", 1500)
-    assert op.print_packages_for_interval(all_packages, "01/05/2022", "10/05/2022")
+    assert op.print_packages_for_interval(all_packages, datetime.strptime("01/05/2022", time_format), datetime.strptime("10/05/2022", time_format))
     assert (domain.get_id(all_packages[0]) == 1)
     assert (domain.get_destination(all_packages[0]) == "Paris")
     assert (domain.get_start_date(all_packages[0]) == "01/05/2022")
