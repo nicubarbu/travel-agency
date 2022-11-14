@@ -1,7 +1,7 @@
 from datetime import datetime
 import Domain.operations as op
 import Domain.entities as domain
-time_format = "%d-%m-%Y"
+time_format = "%d/%m/%Y"
 
 
 def print_options():
@@ -47,19 +47,19 @@ def add_package(all_packages):
     if package_id == -1:
         package_id = len(all_packages) + 1
     
-    start_date = input("Start date {dd-mm-yyyy}: ")
+    start_date = input("Start date {dd/mm/yyyy}: ")
     while (type(start_date) is not str) or (len(start_date) != 10):
         print("Invalid start date!")
         while type(datetime.strptime(start_date, time_format)) is not datetime:
             print("Invalid start date!")
-            start_date = input("Start date {dd-mm-yyyy}: ")
+            start_date = input("Start date {dd/mm/yyyy}: ")
             
-    end_date = input("End date {dd-mm-yyyy}: ")
+    end_date = input("End date {dd/mm/yyyy}: ")
     while (type(end_date) is not str) or (len(end_date) != 10):
         print("Invalid end date!")
         while type(datetime.strptime(end_date, time_format)) is not datetime:
             print("Invalid end date!")
-            start_date = input("End date {dd-mm-yyyy}: ")
+            start_date = input("End date {dd/mm/yyyy}: ")
             
     destination = input("Destination: ")
     while type(destination) is not str:
@@ -90,8 +90,8 @@ def modify_package(all_packages):
     
     if len(all_packages) >= user_id > 0:
         print("Enter the new information for the package.")
-        start_date = input("Start date {dd-mm-yyyy}: ")
-        end_date = input("End date {dd-mm-yyyy}: ")
+        start_date = input("Start date {dd/mm/yyyy}: ")
+        end_date = input("End date {dd/mm/yyyy}: ")
         destination = input("Destination: ")
         price = float(input("Price: "))
         op.modify_package(all_packages, user_id, start_date, end_date, destination, price)
@@ -137,11 +137,12 @@ def print_all_packages(all_packages):
     for i in range(len(all_packages)):
         print(all_packages[i])
 
+
 def print_packages_for_interval(all_packages):
-    start_date = input("Start date {dd-mm-yyyy}: ")
-    end_date = input("End date {dd-mm-yyyy}: ")
+    start_date = datetime.strptime(input("Start date {dd/mm/yyyy}: "), time_format)
+    end_date = datetime.strptime(input("End date {dd/mm/yyyy}: "), time_format)
     for i in range(len(all_packages)):
-        print(op.print_packages_for_interval(all_packages[i], start_date, end_date))
+        print(op.print_packages_for_interval(all_packages, start_date, end_date))
 
 
 def print_packages_for_destination_and_price(all_packages):
@@ -151,7 +152,7 @@ def print_packages_for_destination_and_price(all_packages):
 
 
 def print_packages_for_end_date(all_packages):
-    end_date = input("End date {dd-mm-yyyy}: ")
+    end_date = input("End date {dd/mm/yyyy}: ")
     print(op.print_packages_for_end_date(all_packages, end_date))
 
 

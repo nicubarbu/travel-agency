@@ -1,6 +1,6 @@
 import Domain.entities as domain
 from datetime import datetime
-time_format = "%d-%m-%Y"
+time_format = "%d/%m/%Y"
 
 
 def create_package(package_id, start_date, end_date, destination, price):
@@ -102,20 +102,10 @@ def print_packages_for_interval(all_packages, start_date, end_date):
            end_date - string
     """
     for i in range(len(all_packages)):
+        start = datetime.strptime(domain.get_start_date(all_packages[i]), time_format)
+        end = datetime.strptime(domain.get_end_date(all_packages[i]), time_format)
         
-        if int(datetime.strptime(start_date, time_format).day) <= int(datetime.strptime(domain.get_start_date(all_packages[i]), time_format).day) <= int(datetime.strptime(end_date, time_format).day) and \
-                int(datetime.strptime(start_date, time_format).month) <= int(datetime.strptime(domain.get_start_date(all_packages[i]), time_format).month) <= int(datetime.strptime(end_date, time_format).month) and \
-                int(datetime.strptime(start_date, time_format).year) <= int(datetime.strptime(domain.get_start_date(all_packages[i]), time_format).year) <= int(datetime.strptime(end_date, time_format).year):
-            return all_packages[i]
-
-        if int(datetime.strptime(start_date, time_format)) <=\
-                int(datetime.strptime(domain.get_start_date(all_packages[i]), time_format)) <=\
-                int(datetime.strptime(end_date, time_format)):
-            return all_packages[i]
-        
-        if int(datetime.strptime(start_date, time_format)) <= \
-                int(datetime.strptime(domain.get_end_date(all_packages[i]), time_format)) <= \
-                int(datetime.strptime(end_date, time_format)):
+        if start_date <= start < end <= end_date:
             return all_packages[i]
 
 
