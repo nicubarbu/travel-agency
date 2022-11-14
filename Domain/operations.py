@@ -72,11 +72,12 @@ def delete_packages_for_shorter_duration(all_packages, days):
     # also check if the input date is greater than today's date
     # valid for every function that requires start_date, end_date
 
-    # time_format = "%d-%m-%Y"
     for i in range(len(all_packages)-1, -1, -1):
+        
+        start = datetime.strptime(domain.get_start_date(all_packages[i]), time_format)
+        end = datetime.strptime(domain.get_end_date(all_packages[i]), time_format)
 
-        date = datetime.strptime(domain.get_end_date(all_packages[i]), time_format) - \
-               datetime.strptime(domain.get_start_date(all_packages[i]), time_format)
+        date = end - start
         if date.days < days:
             del all_packages[i]
     return all_packages
@@ -117,7 +118,7 @@ def print_packages_for_destination_and_price(all_packages, destination, price):
            price - float
     """
     for i in range(len(all_packages)):
-        if domain.get_destination(all_packages[i]) == destination and domain.get_price(all_packages[i]) <= price:
+        if domain.get_destination(all_packages[i]) == destination and domain.get_price(all_packages[i]) <= float(price):
             return all_packages[i]
 
 
