@@ -38,7 +38,6 @@ def print_options():
 def add_package(all_packages):
     package_id = -1
     for i in range(0, len(all_packages)):
-        # if i in all_packages[i].values():
         if i+1 == domain.get_id(all_packages[i]):
             continue
         else:
@@ -47,30 +46,95 @@ def add_package(all_packages):
     if package_id == -1:
         package_id = len(all_packages) + 1
     
-    start_date = input("Start date {dd/mm/yyyy}: ")
-    while (type(start_date) is not str) or (len(start_date) != 10):
-        print("Invalid start date!")
-        while type(datetime.strptime(start_date, time_format)) is not datetime:
-            print("Invalid start date!")
-            start_date = input("Start date {dd/mm/yyyy}: ")
+    try:
+        start_date = input("Start date {dd/mm/yyyy}: ")
+        datetime.strptime(start_date, time_format)
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+        while True:
+            try:
+                start_date = input("Start date {dd/mm/yyyy}: ")
+                datetime.strptime(start_date, time_format)
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                start_date = input("Start date {dd/mm/yyyy}: ")
+                datetime.strptime(start_date, time_format)
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
             
-    end_date = input("End date {dd/mm/yyyy}: ")
-    while (type(end_date) is not str) or (len(end_date) != 10):
-        print("Invalid end date!")
-        while type(datetime.strptime(end_date, time_format)) is not datetime:
-            print("Invalid end date!")
-            start_date = input("End date {dd/mm/yyyy}: ")
-            
-    destination = input("Destination: ")
-    while type(destination) is not str:
-        print("Invalid destination!")
+    try:
+        end_date = input("End date {dd/mm/yyyy}: ")
+        datetime.strptime(end_date, time_format)
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+        while True:
+            try:
+                end_date = input("End date {dd/mm/yyyy}: ")
+                datetime.strptime(end_date, time_format)
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                end_date = input("End date {dd/mm/yyyy}: ")
+                datetime.strptime(end_date, time_format)
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
+    
+    try:        
         destination = input("Destination: ")
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be a string", ve))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be a string", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
             
     try:
         price = float(input("Price: "))
     except TypeError as te:
-        print("You entered an invalid value. You should enter a floating number. ", te)
-        price = float(input("Price: "))
+        print(TypeError("Incorrect data format, should be a float", te))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except TypeError:
+                print(TypeError("Incorrect data format, should be a float", te))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
     
     op.add_package(all_packages, package_id, start_date, end_date, destination, price)
 
@@ -82,18 +146,107 @@ def modify_package(all_packages):
     
     print("These are the available packages:\n")
     print_all_packages(all_packages)
+    
     print("Enter the ID of the package you want to modify.")
     user_id = int(input("ID: "))
+    
     while user_id > len(all_packages) or user_id < 1:
         print("Invalid ID!")
         user_id = int(input("ID: "))
     
     if len(all_packages) >= user_id > 0:
         print("Enter the new information for the package.")
-        start_date = input("Start date {dd/mm/yyyy}: ")
-        end_date = input("End date {dd/mm/yyyy}: ")
-        destination = input("Destination: ")
-        price = float(input("Price: "))
+        
+        try:
+            start_date = input("Start date {dd/mm/yyyy}: ")
+            datetime.strptime(start_date, time_format)
+        except ValueError as ve:
+            print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+            while True:
+                try:
+                    start_date = input("Start date {dd/mm/yyyy}: ")
+                    datetime.strptime(start_date, time_format)
+                    break
+                except ValueError:
+                    print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+                    continue
+        except Exception as e:
+            print(Exception("Unknown error", e))
+            while True:
+                try:
+                    start_date = input("Start date {dd/mm/yyyy}: ")
+                    datetime.strptime(start_date, time_format)
+                    break
+                except Exception:
+                    print(Exception("Unknown error", e))
+                    continue
+            
+        try:
+            end_date = input("End date {dd/mm/yyyy}: ")
+            datetime.strptime(end_date, time_format)
+        except ValueError as ve:
+            print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+            while True:
+                try:
+                    end_date = input("End date {dd/mm/yyyy}: ")
+                    datetime.strptime(end_date, time_format)
+                    break
+                except ValueError:
+                    print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+                    continue
+        except Exception as e:
+            print(Exception("Unknown error", e))
+            while True:
+                try:
+                    end_date = input("End date {dd/mm/yyyy}: ")
+                    datetime.strptime(end_date, time_format)
+                    break
+                except Exception:
+                    print(Exception("Unknown error", e))
+                    continue
+        
+        try:        
+            destination = input("Destination: ")
+        except ValueError as ve:
+            print(ValueError("Incorrect data format, should be a string", ve))
+            while True:
+                try:
+                    destination = input("Destination: ")
+                    break
+                except ValueError:
+                    print(ValueError("Incorrect data format, should be a string", ve))
+                    continue
+        except Exception as e:
+            print(Exception("Unknown error", e))
+            while True:
+                try:
+                    destination = input("Destination: ")
+                    break
+                except Exception:
+                    print(Exception("Unknown error", e))
+                    continue
+                
+        try:
+            price = float(input("Price: "))
+        except TypeError as te:
+            print(TypeError("Incorrect data format, should be a float", te))
+            while True:
+                try:
+                    price = float(input("Price: "))
+                    break
+                except TypeError:
+                    print(TypeError("Incorrect data format, should be a float", te))
+                    continue
+        except Exception as e:
+            print(Exception("Unknown error", e))
+            while True:
+                try:
+                    price = float(input("Price: "))
+                    break
+                except Exception:
+                    print(Exception("Unknown error", e))
+                    continue
+            
         op.modify_package(all_packages, user_id, start_date, end_date, destination, price)
 
 
@@ -105,7 +258,18 @@ def delete_packages_for_destination(all_packages):
     print("These are the available packages:\n")
     print_all_packages(all_packages)
     
-    destination = input("Destination: ")
+    try:        
+        destination = input("Destination: ")
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be a string", ve))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be a string", ve))
+                continue
+            
     print(op.delete_packages_for_destination(all_packages, destination))
 
 
@@ -117,7 +281,37 @@ def delete_packages_for_shorter_duration(all_packages):
     print("These are the available packages:\n")
     print_all_packages(all_packages)
     
-    days = int(input("Days: "))
+    try:
+        days = int(input("Days: "))
+    except TypeError as te:
+        print(TypeError("Incorrect data format, should be an integer", te))
+        while True:
+            try:
+                days = int(input("Days: "))
+                break
+            except TypeError:
+                print(TypeError("Incorrect data format, should be an integer", te))
+                continue
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be an integer", ve))
+        while True:
+            try:
+                days = int(input("Days: "))
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be an integer", ve))
+                continue
+            
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                days = int(input("Days: "))
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
+    
     op.delete_packages_for_shorter_duration(all_packages, days)
 
 
@@ -129,7 +323,18 @@ def delete_packages_for_price(all_packages):
     print("These are the available packages:\n")
     print_all_packages(all_packages)
     
-    price = float(input("Price: "))
+    try:
+        price = float(input("Price: "))
+    except TypeError as te:
+        print(TypeError("Incorrect data format, should be a float", te))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except TypeError:
+                print(TypeError("Incorrect data format, should be a float", te))
+                continue
+    
     op.delete_packages_for_price(all_packages, price)
 
 
@@ -139,47 +344,300 @@ def print_all_packages(all_packages):
 
 
 def print_packages_for_interval(all_packages):
-    start_date = datetime.strptime(input("Start date {dd/mm/yyyy}: "), time_format)
-    end_date = datetime.strptime(input("End date {dd/mm/yyyy}: "), time_format)
+    # start_date = datetime.strptime(input("Start date {dd/mm/yyyy}: "), time_format)
+    # end_date = datetime.strptime(input("End date {dd/mm/yyyy}: "), time_format)
+    
+    try:
+        start_date = datetime.strptime(input("Start date {dd/mm/yyyy}: "), time_format)
+        datetime.strptime(start_date, time_format)
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+        while True:
+            try:
+                start_date = datetime.strptime(input("Start date {dd/mm/yyyy}: "), time_format)
+                datetime.strptime(start_date, time_format)
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                start_date = datetime.strptime(input("Start date {dd/mm/yyyy}: "), time_format)
+                datetime.strptime(start_date, time_format)
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
+            
+    try:
+        end_date = datetime.strptime(input("End date {dd/mm/yyyy}: "), time_format)
+        datetime.strptime(start_date, time_format)
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+        while True:
+            try:
+                end_date = datetime.strptime(input("End date {dd/mm/yyyy}: "), time_format)
+                datetime.strptime(end_date, time_format)
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                end_date = datetime.strptime(input("End date {dd/mm/yyyy}: "), time_format)
+                datetime.strptime(end_date, time_format)
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
+    
     for i in range(len(all_packages)):
         print(op.print_packages_for_interval(all_packages, start_date, end_date))
 
 
 def print_packages_for_destination_and_price(all_packages):
-    destination = input("Destination: ")
-    price = input("Price: ")
+    # destination = input("Destination: ")
+    # price = input("Price: ")
+    try:        
+        destination = input("Destination: ")
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be a string", ve))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be a string", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
+            
+    try:
+        price = float(input("Price: "))
+    except TypeError as te:
+        print(TypeError("Incorrect data format, should be a float", te))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except TypeError:
+                print(TypeError("Incorrect data format, should be a float", te))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
     print(op.print_packages_for_destination_and_price(all_packages, destination, price))
 
 
 def print_packages_for_end_date(all_packages):
-    end_date = input("End date {dd/mm/yyyy}: ")
+    # end_date = input("End date {dd/mm/yyyy}: ")
+    try:
+        end_date = input("End date {dd/mm/yyyy}: ")
+        datetime.strptime(end_date, time_format)
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+        while True:
+            try:
+                end_date = input("End date {dd/mm/yyyy}: ")
+                datetime.strptime(end_date, time_format)
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be DD/MM/YYYY", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                end_date = input("End date {dd/mm/yyyy}: ")
+                datetime.strptime(end_date, time_format)
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
     print(op.print_packages_for_end_date(all_packages, end_date))
 
 
 def print_number_of_packages_for_destination(all_packages):
-    destination = input("Destination: ")
+    # destination = input("Destination: ")
+    try:        
+        destination = input("Destination: ")
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be a string", ve))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be a string", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
     print(op.print_number_of_packages_for_destination(all_packages, destination))
 
 
 def print_packages_for_duration_and_price(all_packages):
-    days = int(input("Days: "))
-    price = float(input("Price: "))
+    # days = int(input("Days: "))
+    # price = float(input("Price: "))
+    try:
+        days = int(input("Days: "))
+    except TypeError as te:
+        print(TypeError("Incorrect data format, should be an integer", te))
+        while True:
+            try:
+                days = int(input("Days: "))
+                break
+            except TypeError:
+                print(TypeError("Incorrect data format, should be an integer", te))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                days = int(input("Days: "))
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
+    try:
+        price = float(input("Price: "))
+    except TypeError as te:
+        print(TypeError("Incorrect data format, should be a float", te))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except TypeError:
+                print(TypeError("Incorrect data format, should be a float", te))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
     print(op.print_packages_for_duration_and_price(all_packages, days, price))
 
 
 def print_medium_price_for_destination(all_packages):
-    destination = input("Destination: ")
+    # destination = input("Destination: ")
+    try:        
+        destination = input("Destination: ")
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be a string", ve))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be a string", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
     print(op.print_medium_price_for_destination(all_packages, destination))
 
 
 def remove_package_for_destination_higher_price(all_packages):
-    destination = input("Destination: ")
-    price = float(input("Price: "))
+    # destination = input("Destination: ")
+    # price = float(input("Price: "))
+    try:        
+        destination = input("Destination: ")
+    except ValueError as ve:
+        print(ValueError("Incorrect data format, should be a string", ve))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except ValueError:
+                print(ValueError("Incorrect data format, should be a string", ve))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                destination = input("Destination: ")
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
+            
+    try:
+        price = float(input("Price: "))
+    except TypeError as te:
+        print(TypeError("Incorrect data format, should be a float", te))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except TypeError:
+                print(TypeError("Incorrect data format, should be a float", te))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                price = float(input("Price: "))
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
     op.remove_package_for_destination_higher_price(all_packages, destination, price)
 
 
 def remove_package_for_other_month(all_packages):
-    month = int(input("Month: "))
+    try:
+        month = int(input("Month: "))
+    except TypeError as te:
+        print(TypeError("Incorrect data format, should be an integer", te))
+        while True:
+            try:
+                month = int(input("Month: "))
+                break
+            except TypeError:
+                print(TypeError("Incorrect data format, should be an integer", te))
+                continue
+    except Exception as e:
+        print(Exception("Unknown error", e))
+        while True:
+            try:
+                month = int(input("Month: "))
+                break
+            except Exception:
+                print(Exception("Unknown error", e))
+                continue
     op.remove_package_for_other_month(all_packages, month)
 
 
