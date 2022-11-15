@@ -252,7 +252,7 @@ def modify_package(all_packages):
 
 def delete_packages_for_destination(all_packages):
     if len(all_packages) == 0:
-        print("There are no packages to modify.")
+        print("There are no packages to delete.")
         return run_menu()
     
     print("These are the available packages:\n")
@@ -275,7 +275,7 @@ def delete_packages_for_destination(all_packages):
 
 def delete_packages_for_shorter_duration(all_packages):
     if len(all_packages) == 0:
-        print("There are no packages to modify.")
+        print("There are no packages to delete.")
         return run_menu()
     
     print("These are the available packages:\n")
@@ -317,7 +317,7 @@ def delete_packages_for_shorter_duration(all_packages):
 
 def delete_packages_for_price(all_packages):
     if len(all_packages) == 0:
-        print("There are no packages to modify.")
+        print("There are no packages to delete.")
         return run_menu()
     
     print("These are the available packages:\n")
@@ -339,13 +339,18 @@ def delete_packages_for_price(all_packages):
 
 
 def print_all_packages(all_packages):
+    if len(all_packages) == 0:
+        print("There are no packages to print.")
+        return run_menu()
+    
     for i in range(len(all_packages)):
         print(all_packages[i])
 
 
 def print_packages_for_interval(all_packages):
-    # start_date = datetime.strptime(input("Start date {dd/mm/yyyy}: "), time_format)
-    # end_date = datetime.strptime(input("End date {dd/mm/yyyy}: "), time_format)
+    if len(all_packages) == 0:
+        print("There are no packages to print.")
+        return run_menu()
     
     try:
         start_date = datetime.strptime(input("Start date {dd/mm/yyyy}: "), time_format)
@@ -400,8 +405,10 @@ def print_packages_for_interval(all_packages):
 
 
 def print_packages_for_destination_and_price(all_packages):
-    # destination = input("Destination: ")
-    # price = input("Price: ")
+    if len(all_packages) == 0:
+        print("There are no packages to print.")
+        return run_menu()
+    
     try:        
         destination = input("Destination: ")
     except ValueError as ve:
@@ -447,7 +454,10 @@ def print_packages_for_destination_and_price(all_packages):
 
 
 def print_packages_for_end_date(all_packages):
-    # end_date = input("End date {dd/mm/yyyy}: ")
+    if len(all_packages) == 0:
+        print("There are no packages to print.")
+        return run_menu()
+    
     try:
         end_date = input("End date {dd/mm/yyyy}: ")
         datetime.strptime(end_date, time_format)
@@ -475,7 +485,10 @@ def print_packages_for_end_date(all_packages):
 
 
 def print_number_of_packages_for_destination(all_packages):
-    # destination = input("Destination: ")
+    if len(all_packages) == 0:
+        print("There are no packages.")
+        return run_menu()
+    
     try:        
         destination = input("Destination: ")
     except ValueError as ve:
@@ -500,8 +513,10 @@ def print_number_of_packages_for_destination(all_packages):
 
 
 def print_packages_for_duration_and_price(all_packages):
-    # days = int(input("Days: "))
-    # price = float(input("Price: "))
+    if len(all_packages) == 0:
+        print("There are no packages to print.")
+        return run_menu()
+    
     try:
         days = int(input("Days: "))
     except TypeError as te:
@@ -546,7 +561,10 @@ def print_packages_for_duration_and_price(all_packages):
 
 
 def print_medium_price_for_destination(all_packages):
-    # destination = input("Destination: ")
+    if len(all_packages) == 0:
+        print("There are no packages.")
+        return run_menu()
+    
     try:        
         destination = input("Destination: ")
     except ValueError as ve:
@@ -571,8 +589,10 @@ def print_medium_price_for_destination(all_packages):
 
 
 def remove_package_for_destination_higher_price(all_packages):
-    # destination = input("Destination: ")
-    # price = float(input("Price: "))
+    if len(all_packages) == 0:
+        print("There are no packages to remove.")
+        return run_menu()
+    
     try:        
         destination = input("Destination: ")
     except ValueError as ve:
@@ -618,6 +638,10 @@ def remove_package_for_destination_higher_price(all_packages):
 
 
 def remove_package_for_other_month(all_packages):
+    if len(all_packages) == 0:
+        print("There are no packages to remove.")
+        return run_menu()
+    
     try:
         month = int(input("Month: "))
     except TypeError as te:
@@ -643,6 +667,10 @@ def remove_package_for_other_month(all_packages):
 
 def undo_last_operation(all_packages, all_packages_copy):
     op.undo_last_operation(all_packages, all_packages_copy)
+
+# def undo_last_operation(all_packages):
+#     all_packages = undo[:]
+#     print("Undo successful. Current list of packages: ", all_packages)
 
 
 def run_menu():
