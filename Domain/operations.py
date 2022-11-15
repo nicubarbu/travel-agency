@@ -204,6 +204,16 @@ def remove_package_for_other_month(all_packages, month):
         if datetime.strptime(domain.get_start_date(all_packages[i]), time_format).month != month:
         # if domain.get_start_date(all_packages[i]).month:
             del all_packages[i]
+            
+
+def undo(all_packages, all_packages_copy):
+    """
+    undo the last operation
+    input: all_packages - list of packages
+           all_packages_copy - list of packages
+    """
+    all_packages = all_packages_copy
+    return all_packages
 
 
 def undo_last_operation(all_packages, all_packages_copy):
