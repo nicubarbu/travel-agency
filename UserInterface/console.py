@@ -665,8 +665,8 @@ def remove_package_for_other_month(all_packages):
     op.remove_package_for_other_month(all_packages, month)
 
 
-# def undo_last_operation(all_packages, all_packages_copy):
-#     op.undo_last_operation(all_packages, all_packages_copy)
+def undo_last_operation(all_packages, all_packages_copy):
+    op.undo_last_operation(all_packages, all_packages_copy)
 
 
 # def undo_last_operation(all_packages):
