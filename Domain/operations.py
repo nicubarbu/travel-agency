@@ -159,11 +159,13 @@ def print_packages_for_duration_and_price(all_packages, days, price):
            days - integer
            price - float
     """
+    all_packages_copy = []
     for i in range(len(all_packages)):
         if (datetime.strptime(domain.get_end_date(all_packages[i]), time_format) -
             datetime.strptime(domain.get_start_date(all_packages[i]), time_format)).days == days\
                 and domain.get_price(all_packages[i]) <= price:
-            print(all_packages[i])
+            all_packages_copy.append(all_packages[i])
+    return all_packages_copy
 
 
 def print_medium_price_for_destination(all_packages, destination):
@@ -206,14 +208,14 @@ def remove_package_for_other_month(all_packages, month):
             del all_packages[i]
             
 
-def undo(all_packages, all_packages_copy):
-    """
-    undo the last operation
-    input: all_packages - list of packages
-           all_packages_copy - list of packages
-    """
-    all_packages = all_packages_copy
-    return all_packages
+# def undo(all_packages, all_packages_copy):
+#     """
+#     undo the last operation
+#     input: all_packages - list of packages
+#            all_packages_copy - list of packages
+#     """
+#     all_packages = all_packages_copy
+#     return all_packages
 
 
 def undo_last_operation(all_packages, all_packages_copy):

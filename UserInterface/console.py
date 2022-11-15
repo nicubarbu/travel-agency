@@ -665,8 +665,9 @@ def remove_package_for_other_month(all_packages):
     op.remove_package_for_other_month(all_packages, month)
 
 
-def undo_last_operation(all_packages, all_packages_copy):
-    op.undo_last_operation(all_packages, all_packages_copy)
+# def undo_last_operation(all_packages, all_packages_copy):
+#     op.undo_last_operation(all_packages, all_packages_copy)
+
 
 # def undo_last_operation(all_packages):
 #     all_packages = undo[:]
@@ -693,10 +694,17 @@ def run_menu():
                16: exit
     }
     all_packages = []
+    all_packages_copy = []
     while True:
         print_options()
         opt = input("Option: ")
         if opt == "x":
             break
         opt = int(opt)
-        options[opt](all_packages)
+        
+        if opt == 15:
+            all_packages = all_packages_copy.copy()
+        else: 
+            all_packages_copy = all_packages.copy()
+            options[opt](all_packages)
+            
