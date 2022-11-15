@@ -12,7 +12,13 @@ def create_package(package_id, start_date, end_date, destination, price):
            price - float
     return: package - dictionary
     """
-    return{"id": package_id, "start_date": start_date, "end_date": end_date, "destination": destination, "price": price}
+    return{
+        "id": package_id,
+        "start_date": start_date,
+        "end_date": end_date,
+        "destination": destination,
+        "price": price
+        }
 
 
 def add_package(all_packages, package_id, start_date, end_date, destination, price):
