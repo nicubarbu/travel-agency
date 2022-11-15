@@ -162,9 +162,9 @@ def remove_package_for_other_month():
     
 # def undo_last_operation():
 #     all_packages = []
-#     op.add_package(all_packages, "Bucharest", "10/02/2022", "14/02/2022", 500)
-#     op.add_package(all_packages, "Bucharest", "07/01/2022", "10/01/2022", 700)
-#     op.add_package(all_packages, "Paris", "01/01/2022", "02/01/2022", 1500)
+#     op.add_package(all_packages, 1, "Bucharest", "10/02/2022", "14/02/2022", 500)
+#     op.add_package(all_packages, 2, "Bucharest", "07/01/2022", "10/01/2022", 700)
+#     op.add_package(all_packages, 3, "Paris", "01/01/2022", "02/01/2022", 1500)
 #     op.remove_package_for_other_month(all_packages, "02")
 #     op.undo_last_operation(all_packages, all_packages_copy)
 #     assert len(all_packages) == 2
