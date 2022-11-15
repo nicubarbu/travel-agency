@@ -20,9 +20,7 @@ The application should allow to:
 4. F4: Delete travel packages that have a shorter duration than given number of days
 5. F5: Delete travel packages that have the price bigger than a given price
 6. F6: Print all packages
-7. F7: Print travel packages that include a stay in a given interval of time (e.g. 10/08/2018 - 24/08/2018). Valid packages:
-    start date is equal or greater than the input date and less or equal than the end date
-    end date is equal or less that the input date and equal or greater than the start date of the interval
+7. F7: Print travel packages that include a stay in a given interval of time (e.g. 10/08/2018 - 24/08/2018). Valid packages: start date is equal or greater than the input date and less or equal than the end date, end date is equal or less that the input date and equal or greater than the start date of the interval
 8. F8: Print travel packages that have specific destination and a price less than a given price
 9. F9: Print travel packages with a specific end date
 10. F10: Print number of offers for a specific destination
